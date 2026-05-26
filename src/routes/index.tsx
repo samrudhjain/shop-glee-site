@@ -4,6 +4,7 @@ import {
   Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin,
   Star, CreditCard, Zap, Award, IndianRupee, Tag, CheckCircle2,
   Cpu, HardDrive, Monitor, Camera, Battery, ArrowRight,
+  BadgeCheck, HeadphonesIcon, Wallet,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -121,9 +122,9 @@ function Index() {
             <span>Sharma Mobile Store</span>
           </a>
           <ul className="hidden gap-8 md:flex">
-            {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+            {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
               <li key={l}>
-                <a href={`#${l.toLowerCase()}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                <a href={`#${l.toLowerCase().replace(/\s+/g, "")}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                   {l}
                 </a>
               </li>
@@ -139,9 +140,9 @@ function Index() {
         {menuOpen && (
           <div className="border-t border-border/60 md:hidden">
             <ul className="flex flex-col px-6 py-4">
-              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+              {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
                 <li key={l}>
-                  <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
+                  <a href={`#${l.toLowerCase().replace(/\s+/g, "")}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
                   </a>
                 </li>
@@ -452,6 +453,57 @@ function Index() {
         </div>
       </section>
 
+      {/* Why Choose Us */}
+      <section id="whyus" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-12 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Why Choose Us</span>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
+            The <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>Sharma Mobile</span> difference.
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Four reasons Bengaluru trusts us for every smartphone purchase.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              icon: BadgeCheck,
+              title: "Genuine Products",
+              desc: "Every device is 100% authentic with official brand warranty, GST invoice, and sealed box guarantee.",
+            },
+            {
+              icon: Truck,
+              title: "Fast Delivery",
+              desc: "Same-day delivery across Bengaluru. Free express shipping to any city in India within 2-3 days.",
+            },
+            {
+              icon: Wallet,
+              title: "Easy EMI",
+              desc: "Zero-interest EMI on 3, 6, 9 & 12 months. Instant approval on all major credit & debit cards.",
+            },
+            {
+              icon: HeadphonesIcon,
+              title: "Expert Support",
+              desc: "In-store setup, data transfer, and lifetime after-sales support from our trained mobile experts.",
+            },
+          ].map((f) => (
+            <div
+              key={f.title}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card/40 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/40 hover:shadow-[var(--shadow-glow)]"
+            >
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-20 blur-2xl transition-opacity group-hover:opacity-40" style={{ background: "var(--gradient-gold)" }} />
+              <div className="relative">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary transition-transform duration-500 group-hover:scale-110">
+                  <f.icon className="h-7 w-7" />
+                </div>
+                <h3 className="mt-6 text-lg font-bold">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Reviews */}
       <section id="reviews" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 text-center">
@@ -559,8 +611,8 @@ function Index() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Explore</p>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
-                <li key={l}><a href={`#${l.toLowerCase()}`} className="hover:text-primary">{l}</a></li>
+              {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
+                <li key={l}><a href={`#${l.toLowerCase().replace(/\s+/g, "")}`} className="hover:text-primary">{l}</a></li>
               ))}
             </ul>
           </div>
