@@ -612,7 +612,7 @@ function Index() {
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Explore</p>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
-                <li key={l}><a href={`#${l.toLowerCase()}`} className="hover:text-primary">{l}</a></li>
+                <li key={l}><a href={`#${l.toLowerCase().replace(/\s+/g, "")}`} className="hover:text-primary">{l}</a></li>
               ))}
             </ul>
           </div>
