@@ -33,6 +33,63 @@ const products = [
   { id: 4, name: "Galaxy Z Fold 5", brand: "Samsung", price: "1,54,999", mrp: "1,64,999", emi: "7,270", tag: "Premium", img: phone4, rating: 4.8 },
 ];
 
+const featuredProducts = [
+  {
+    id: "f1",
+    name: "iPhone 15 Pro",
+    brand: "Apple",
+    price: "1,34,900",
+    mrp: "1,45,900",
+    emi: "6,329",
+    tag: "Flagship",
+    img: iphone15Pro,
+    rating: 4.9,
+    specs: [
+      { icon: Cpu, label: "A17 Pro Chip" },
+      { icon: HardDrive, label: "256 GB" },
+      { icon: Monitor, label: '6.1" XDR' },
+      { icon: Camera, label: "48 MP" },
+      { icon: Battery, label: "All Day" },
+    ],
+  },
+  {
+    id: "f2",
+    name: "Galaxy S24 Ultra",
+    brand: "Samsung",
+    price: "1,29,999",
+    mrp: "1,39,999",
+    emi: "6,099",
+    tag: "Best Camera",
+    img: s24Ultra,
+    rating: 4.8,
+    specs: [
+      { icon: Cpu, label: "Snapdragon 8 Gen 3" },
+      { icon: HardDrive, label: "256 GB" },
+      { icon: Monitor, label: '6.8" AMOLED' },
+      { icon: Camera, label: "200 MP" },
+      { icon: Battery, label: "5000 mAh" },
+    ],
+  },
+  {
+    id: "f3",
+    name: "Vivo V50",
+    brand: "Vivo",
+    price: "42,999",
+    mrp: "48,999",
+    emi: "2,015",
+    tag: "Value King",
+    img: vivoV50,
+    rating: 4.7,
+    specs: [
+      { icon: Cpu, label: "Dimensity 9300" },
+      { icon: HardDrive, label: "256 GB" },
+      { icon: Monitor, label: '6.78" AMOLED' },
+      { icon: Camera, label: "50 MP" },
+      { icon: Battery, label: "6000 mAh" },
+    ],
+  },
+];
+
 const reviews = [
   { name: "Rahul Verma", city: "Delhi", text: "Bought iPhone 15 at the best price in town. Smooth EMI process and very friendly staff. Highly recommended!", rating: 5 },
   { name: "Priya Sharma", city: "Mumbai", text: "Excellent service! Got my Samsung S24 Ultra delivered the same day. Genuine product with full warranty.", rating: 5 },
