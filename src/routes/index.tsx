@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin,
   Star, CreditCard, Zap, Award, IndianRupee, Tag, CheckCircle2,
+  Cpu, HardDrive, Monitor, Camera, Battery, ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -11,6 +12,9 @@ import phone1 from "@/assets/phone-1.jpg";
 import phone2 from "@/assets/phone-2.jpg";
 import phone3 from "@/assets/phone-3.jpg";
 import phone4 from "@/assets/phone-4.jpg";
+import iphone15Pro from "@/assets/iphone-15-pro.jpg";
+import s24Ultra from "@/assets/s24-ultra.jpg";
+import vivoV50 from "@/assets/vivo-v50.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
