@@ -206,6 +206,96 @@ function Index() {
         </div>
       </section>
 
+      {/* Featured Smartphones */}
+      <section id="featured" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-12 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">This Season's Picks</span>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
+            Featured <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>Smartphones</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Hand-picked flagship devices with the best specs, prices, and EMI plans.
+          </p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {featuredProducts.map((p) => (
+            <article
+              key={p.id}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card/40 transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
+            >
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <span
+                  className="absolute left-4 top-4 rounded-full px-3.5 py-1.5 text-xs font-bold text-primary-foreground shadow-lg"
+                  style={{ background: "var(--gradient-brand)" }}
+                >
+                  {p.tag}
+                </span>
+                <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-white/90">
+                  <Star className="h-4 w-4 fill-primary text-primary" />
+                  <span className="text-sm font-semibold">{p.rating}</span>
+                  <span className="text-xs text-white/60">(2k+ reviews)</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{p.brand}</p>
+                <h3 className="mt-1 text-xl font-bold">{p.name}</h3>
+
+                {/* Specs */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.specs.map((s) => (
+                    <span
+                      key={s.label}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/60 px-2.5 py-1.5 text-xs font-medium text-secondary-foreground"
+                    >
+                      <s.icon className="h-3.5 w-3.5 text-primary" />
+                      {s.label}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Price */}
+                <div className="mt-5 flex items-end gap-3">
+                  <span className="flex items-center text-2xl font-bold text-primary">
+                    <IndianRupee className="h-5 w-5" />
+                    {p.price}
+                  </span>
+                  <span className="mb-0.5 text-sm text-muted-foreground line-through">₹{p.mrp}</span>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">EMI from ₹{p.emi}/month</p>
+
+                {/* CTA */}
+                <Button
+                  asChild
+                  className="mt-5 w-full font-semibold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ background: "var(--gradient-brand)" }}
+                >
+                  <a
+                    href={`https://wa.me/919876543210?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    Buy on WhatsApp <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* Products */}
       <section id="products" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 text-center">
