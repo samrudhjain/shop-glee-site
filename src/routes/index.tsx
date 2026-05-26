@@ -60,7 +60,7 @@ function Index() {
             <span>Sharma Mobile Store</span>
           </a>
           <ul className="hidden gap-8 md:flex">
-            {["Products", "Offers", "Reviews", "Visit", "Contact"].map((l) => (
+            {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
               <li key={l}>
                 <a href={`#${l.toLowerCase()}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                   {l}
@@ -78,7 +78,7 @@ function Index() {
         {menuOpen && (
           <div className="border-t border-border/60 md:hidden">
             <ul className="flex flex-col px-6 py-4">
-              {["Products", "Offers", "Reviews", "Visit", "Contact"].map((l) => (
+              {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
