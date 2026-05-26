@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin,
   Star, CreditCard, Zap, Award, IndianRupee, Tag, CheckCircle2,
+  Cpu, HardDrive, Monitor, Camera, Battery, ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -11,6 +12,9 @@ import phone1 from "@/assets/phone-1.jpg";
 import phone2 from "@/assets/phone-2.jpg";
 import phone3 from "@/assets/phone-3.jpg";
 import phone4 from "@/assets/phone-4.jpg";
+import iphone15Pro from "@/assets/iphone-15-pro.jpg";
+import s24Ultra from "@/assets/s24-ultra.jpg";
+import vivoV50 from "@/assets/vivo-v50.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -27,6 +31,63 @@ const products = [
   { id: 2, name: "Galaxy S24 Ultra", brand: "Samsung", price: "1,29,999", mrp: "1,39,999", emi: "6,099", tag: "New Launch", img: phone2, rating: 4.8 },
   { id: 3, name: "OnePlus 12", brand: "OnePlus", price: "64,999", mrp: "69,999", emi: "3,049", tag: "Hot Deal", img: phone3, rating: 4.7 },
   { id: 4, name: "Galaxy Z Fold 5", brand: "Samsung", price: "1,54,999", mrp: "1,64,999", emi: "7,270", tag: "Premium", img: phone4, rating: 4.8 },
+];
+
+const featuredProducts = [
+  {
+    id: "f1",
+    name: "iPhone 15 Pro",
+    brand: "Apple",
+    price: "1,34,900",
+    mrp: "1,45,900",
+    emi: "6,329",
+    tag: "Flagship",
+    img: iphone15Pro,
+    rating: 4.9,
+    specs: [
+      { icon: Cpu, label: "A17 Pro Chip" },
+      { icon: HardDrive, label: "256 GB" },
+      { icon: Monitor, label: '6.1" XDR' },
+      { icon: Camera, label: "48 MP" },
+      { icon: Battery, label: "All Day" },
+    ],
+  },
+  {
+    id: "f2",
+    name: "Galaxy S24 Ultra",
+    brand: "Samsung",
+    price: "1,29,999",
+    mrp: "1,39,999",
+    emi: "6,099",
+    tag: "Best Camera",
+    img: s24Ultra,
+    rating: 4.8,
+    specs: [
+      { icon: Cpu, label: "Snapdragon 8 Gen 3" },
+      { icon: HardDrive, label: "256 GB" },
+      { icon: Monitor, label: '6.8" AMOLED' },
+      { icon: Camera, label: "200 MP" },
+      { icon: Battery, label: "5000 mAh" },
+    ],
+  },
+  {
+    id: "f3",
+    name: "Vivo V50",
+    brand: "Vivo",
+    price: "42,999",
+    mrp: "48,999",
+    emi: "2,015",
+    tag: "Value King",
+    img: vivoV50,
+    rating: 4.7,
+    specs: [
+      { icon: Cpu, label: "Dimensity 9300" },
+      { icon: HardDrive, label: "256 GB" },
+      { icon: Monitor, label: '6.78" AMOLED' },
+      { icon: Camera, label: "50 MP" },
+      { icon: Battery, label: "6000 mAh" },
+    ],
+  },
 ];
 
 const reviews = [
@@ -60,7 +121,7 @@ function Index() {
             <span>Sharma Mobile Store</span>
           </a>
           <ul className="hidden gap-8 md:flex">
-            {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+            {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
               <li key={l}>
                 <a href={`#${l.toLowerCase()}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                   {l}
@@ -78,7 +139,7 @@ function Index() {
         {menuOpen && (
           <div className="border-t border-border/60 md:hidden">
             <ul className="flex flex-col px-6 py-4">
-              {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
@@ -107,7 +168,7 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="font-semibold text-primary-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-brand)" }}>
-                <a href="#products">Explore Phones</a>
+                <a href="#featured">Explore Phones</a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-border bg-card/50 backdrop-blur hover:bg-card">
                 <a href="#visit">Visit Store</a>
@@ -141,6 +202,96 @@ function Index() {
                 <p className="text-sm text-muted-foreground">{f.desc}</p>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Smartphones */}
+      <section id="featured" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-12 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">This Season's Picks</span>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
+            Featured <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>Smartphones</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Hand-picked flagship devices with the best specs, prices, and EMI plans.
+          </p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {featuredProducts.map((p) => (
+            <article
+              key={p.id}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card/40 transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
+            >
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <span
+                  className="absolute left-4 top-4 rounded-full px-3.5 py-1.5 text-xs font-bold text-primary-foreground shadow-lg"
+                  style={{ background: "var(--gradient-brand)" }}
+                >
+                  {p.tag}
+                </span>
+                <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-white/90">
+                  <Star className="h-4 w-4 fill-primary text-primary" />
+                  <span className="text-sm font-semibold">{p.rating}</span>
+                  <span className="text-xs text-white/60">(2k+ reviews)</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{p.brand}</p>
+                <h3 className="mt-1 text-xl font-bold">{p.name}</h3>
+
+                {/* Specs */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.specs.map((s) => (
+                    <span
+                      key={s.label}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/60 px-2.5 py-1.5 text-xs font-medium text-secondary-foreground"
+                    >
+                      <s.icon className="h-3.5 w-3.5 text-primary" />
+                      {s.label}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Price */}
+                <div className="mt-5 flex items-end gap-3">
+                  <span className="flex items-center text-2xl font-bold text-primary">
+                    <IndianRupee className="h-5 w-5" />
+                    {p.price}
+                  </span>
+                  <span className="mb-0.5 text-sm text-muted-foreground line-through">₹{p.mrp}</span>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">EMI from ₹{p.emi}/month</p>
+
+                {/* CTA */}
+                <Button
+                  asChild
+                  className="mt-5 w-full font-semibold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ background: "var(--gradient-brand)" }}
+                >
+                  <a
+                    href={`https://wa.me/919876543210?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    Buy on WhatsApp <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -408,7 +559,7 @@ function Index() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Explore</p>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
                 <li key={l}><a href={`#${l.toLowerCase()}`} className="hover:text-primary">{l}</a></li>
               ))}
             </ul>
