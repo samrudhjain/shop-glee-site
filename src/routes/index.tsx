@@ -140,7 +140,7 @@ function Index() {
         {menuOpen && (
           <div className="border-t border-border/60 md:hidden">
             <ul className="flex flex-col px-6 py-4">
-              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+              {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
