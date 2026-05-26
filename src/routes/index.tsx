@@ -387,15 +387,56 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-card/30">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
-          <div className="flex items-center gap-2 font-semibold">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: "var(--gradient-brand)" }}>
-              <Smartphone className="h-4 w-4 text-primary-foreground" />
+      <footer className="border-t border-border bg-card/50">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4">
+          <div>
+            <div className="flex items-center gap-2 font-bold">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "var(--gradient-brand)" }}>
+                <Smartphone className="h-5 w-5 text-primary-foreground" />
+              </div>
+              Sharma Mobile Store
             </div>
-            Sharma Mobile Store
+            <p className="mt-4 text-sm text-muted-foreground">
+              Bengaluru's most loved mobile store. Genuine phones, easy EMI, and friendly service since 2014.
+            </p>
+            <div className="mt-5 flex items-center gap-2 text-sm">
+              <Star className="h-4 w-4 fill-primary text-primary" />
+              <span className="font-semibold">4.9</span>
+              <span className="text-muted-foreground">on Google</span>
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 Sharma Mobile Store. All rights reserved.</p>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Explore</p>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+                <li key={l}><a href={`#${l.toLowerCase()}`} className="hover:text-primary">{l}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Contact</p>
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Shop No. 14, ITPL Main Road, Whitefield, Bengaluru — 560066</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /><a href="tel:+919876543210" className="hover:text-primary">+91 98765 43210</a></li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /><a href="mailto:hello@sharmamobile.in" className="hover:text-primary">hello@sharmamobile.in</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">Store Hours</p>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <li>Mon – Sat: 10:00 AM – 9:00 PM</li>
+              <li>Sunday: 11:00 AM – 8:00 PM</li>
+            </ul>
+            <Button asChild className="mt-5 w-full font-semibold text-primary-foreground" style={{ background: "var(--gradient-brand)" }}>
+              <a href="tel:+919876543210"><Phone className="mr-2 h-4 w-4" />Call Now</a>
+            </Button>
+          </div>
+        </div>
+        <div className="border-t border-border">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-5 text-xs text-muted-foreground sm:flex-row">
+            <p>© 2026 Sharma Mobile Store. All rights reserved.</p>
+            <p>Whitefield • Bengaluru • Karnataka</p>
+          </div>
         </div>
       </footer>
 
