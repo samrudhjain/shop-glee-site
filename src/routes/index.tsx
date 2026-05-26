@@ -345,7 +345,7 @@ function Index() {
           <div className="grid gap-8 md:grid-cols-5">
             <div className="space-y-4 md:col-span-2">
               {[
-                { icon: MapPin, title: "Address", value: "Shop No. 12, MG Road, Connaught Place, New Delhi — 110001" },
+                { icon: MapPin, title: "Address", value: "Shop No. 14, ITPL Main Road, Whitefield, Bengaluru — 560066" },
                 { icon: Phone, title: "Phone", value: "+91 98765 43210" },
                 { icon: Mail, title: "Email", value: "hello@sharmamobile.in" },
                 { icon: Sparkles, title: "Hours", value: "Mon–Sun: 10:00 AM – 9:00 PM" },
