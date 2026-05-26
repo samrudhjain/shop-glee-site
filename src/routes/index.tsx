@@ -260,6 +260,47 @@ function Index() {
         </div>
       </section>
 
+      {/* About Us */}
+      <section id="about" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+          <div className="relative overflow-hidden rounded-3xl border border-border" style={{ background: "var(--gradient-card)" }}>
+            <img src={heroPhone} alt="Inside Sharma Mobile Store" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div>
+            <span className="text-sm font-semibold uppercase tracking-wider text-primary">About Us</span>
+            <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
+              Bengaluru's trusted name in <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>premium mobiles</span> since 2014.
+            </h2>
+            <p className="mt-5 text-muted-foreground">
+              Sharma Mobile Store started as a single counter in Whitefield with one promise — get our customers the right phone at the right price, with no shortcuts on authenticity or service. A decade later, we're a flagship destination for Apple, Samsung, OnePlus, Google and Xiaomi, serving over 25,000 happy customers across Bengaluru.
+            </p>
+            <p className="mt-4 text-muted-foreground">
+              Every device we sell is 100% genuine with full brand warranty. Our in-house experts help you choose, set up, transfer your data, and stay supported long after the purchase.
+            </p>
+            <div className="mt-8 grid grid-cols-3 gap-4">
+              {[
+                { v: "10+", l: "Years in business" },
+                { v: "25K+", l: "Happy customers" },
+                { v: "4.9★", l: "Google rating" },
+              ].map((s) => (
+                <div key={s.l} className="rounded-2xl border border-border bg-card/50 p-4 text-center">
+                  <p className="bg-clip-text text-2xl font-bold text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>{s.v}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{s.l}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="font-semibold text-primary-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-brand)" }}>
+                <a href="tel:+919876543210"><Phone className="mr-2 h-4 w-4" />Call Now</a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-border bg-card/50 hover:bg-card">
+                <a href="#visit">Get Directions</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Reviews */}
       <section id="reviews" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 text-center">
