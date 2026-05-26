@@ -4,6 +4,7 @@ import {
   Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin,
   Star, CreditCard, Zap, Award, IndianRupee, Tag, CheckCircle2,
   Cpu, HardDrive, Monitor, Camera, Battery, ArrowRight,
+  BadgeCheck, HeadphonesIcon, Wallet,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
