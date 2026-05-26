@@ -124,7 +124,7 @@ function Index() {
           <ul className="hidden gap-8 md:flex">
             {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
               <li key={l}>
-                <a href={`#${l.toLowerCase()}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                <a href={`#${l.toLowerCase().replace(/\s+/g, "")}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                   {l}
                 </a>
               </li>
