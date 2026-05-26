@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin } from "lucide-react";
+import {
+  Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin,
+  Star, CreditCard, Zap, Award, IndianRupee, Tag, CheckCircle2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import heroPhone from "@/assets/hero-phone.jpg";
@@ -13,47 +16,59 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "PixelPhone — Premium Smartphones & Accessories" },
-      { name: "description", content: "Shop the latest flagship smartphones with warranty, free shipping, and expert support. Chat with us on WhatsApp." },
+      { title: "Sharma Mobile Store — Premium Smartphones in India" },
+      { name: "description", content: "Best deals on iPhone, Samsung, OnePlus & more. Easy EMI, free delivery, genuine products. Visit our store or chat on WhatsApp." },
     ],
   }),
 });
 
 const products = [
-  { id: 1, name: "iPhone 15 Pro", price: "$1,099", tag: "New", img: phone1 },
-  { id: 2, name: "Galaxy S24 Ultra", price: "$1,199", tag: "Hot", img: phone2 },
-  { id: 3, name: "Pixel 8 Pro", price: "$899", tag: "Deal", img: phone3 },
-  { id: 4, name: "Galaxy Z Fold 5", price: "$1,799", tag: "Premium", img: phone4 },
+  { id: 1, name: "iPhone 15 Pro", brand: "Apple", price: "1,34,900", mrp: "1,45,900", emi: "6,329", tag: "Bestseller", img: phone1, rating: 4.9 },
+  { id: 2, name: "Galaxy S24 Ultra", brand: "Samsung", price: "1,29,999", mrp: "1,39,999", emi: "6,099", tag: "New Launch", img: phone2, rating: 4.8 },
+  { id: 3, name: "OnePlus 12", brand: "OnePlus", price: "64,999", mrp: "69,999", emi: "3,049", tag: "Hot Deal", img: phone3, rating: 4.7 },
+  { id: 4, name: "Galaxy Z Fold 5", brand: "Samsung", price: "1,54,999", mrp: "1,64,999", emi: "7,270", tag: "Premium", img: phone4, rating: 4.8 },
 ];
 
-const features = [
-  { icon: Shield, title: "2-Year Warranty", desc: "Every device covered" },
-  { icon: Truck, title: "Free Shipping", desc: "On orders over $99" },
-  { icon: Sparkles, title: "Authentic Only", desc: "Brand-new sealed" },
+const reviews = [
+  { name: "Rahul Verma", city: "Delhi", text: "Bought iPhone 15 at the best price in town. Smooth EMI process and very friendly staff. Highly recommended!", rating: 5 },
+  { name: "Priya Sharma", city: "Mumbai", text: "Excellent service! Got my Samsung S24 Ultra delivered the same day. Genuine product with full warranty.", rating: 5 },
+  { name: "Amit Patel", city: "Ahmedabad", text: "Trusted shop. Great prices, easy exchange, and they helped me set up everything before I left. Five stars.", rating: 5 },
 ];
+
+const emiBanks = ["HDFC", "SBI", "ICICI", "Axis", "Kotak", "Bajaj Finserv"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Offers banner */}
+      <div className="relative overflow-hidden text-center text-sm font-medium" style={{ background: "var(--gradient-brand)", color: "var(--primary-foreground)" }}>
+        <div className="flex animate-pulse items-center justify-center gap-2 px-4 py-2">
+          <Tag className="h-4 w-4" />
+          <span>Festive Offer: Flat ₹5,000 OFF + No-Cost EMI on Flagship Phones — Limited Time!</span>
+        </div>
+      </div>
+
       {/* Nav */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-lg">
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#home" className="flex items-center gap-2 font-bold text-lg">
-            <Smartphone className="h-6 w-6 text-primary" />
-            <span>PixelPhone</span>
+          <a href="#home" className="flex items-center gap-2 text-lg font-bold">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "var(--gradient-brand)" }}>
+              <Smartphone className="h-5 w-5 text-primary-foreground" />
+            </div>
+            <span>Sharma Mobile Store</span>
           </a>
           <ul className="hidden gap-8 md:flex">
-            {["Products", "About", "Contact"].map((l) => (
+            {["Products", "Offers", "Reviews", "Visit", "Contact"].map((l) => (
               <li key={l}>
-                <a href={`#${l.toLowerCase()}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                <a href={`#${l.toLowerCase()}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                   {l}
                 </a>
               </li>
             ))}
           </ul>
-          <Button asChild className="hidden md:inline-flex" style={{ background: "var(--gradient-brand)" }}>
+          <Button asChild className="hidden font-semibold text-primary-foreground md:inline-flex" style={{ background: "var(--gradient-brand)" }}>
             <a href="#products">Shop Now</a>
           </Button>
           <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
@@ -63,7 +78,7 @@ function Index() {
         {menuOpen && (
           <div className="border-t border-border/60 md:hidden">
             <ul className="flex flex-col px-6 py-4">
-              {["Products", "About", "Contact"].map((l) => (
+              {["Products", "Offers", "Reviews", "Visit", "Contact"].map((l) => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
@@ -77,25 +92,31 @@ function Index() {
 
       {/* Hero */}
       <section id="home" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
-        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: `url(${heroPhone})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-2 md:py-32">
-          <div className="flex flex-col justify-center text-primary-foreground">
-            <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-medium backdrop-blur">
-              <Sparkles className="h-3 w-3" /> New 2026 Lineup
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: `url(${heroPhone})`, backgroundSize: "cover", backgroundPosition: "center", maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)" }} />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-32">
+          <div className="flex flex-col justify-center">
+            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary backdrop-blur">
+              <Sparkles className="h-3 w-3" /> Trusted by 25,000+ Customers
             </span>
-            <h1 className="text-5xl font-bold leading-tight tracking-tight md:text-6xl">
-              Tomorrow's tech, <br />in your hand today.
+            <h1 className="text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
+              India's most loved <br />
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>mobile store.</span>
             </h1>
-            <p className="mt-6 max-w-md text-lg text-white/80">
-              Discover flagship smartphones from the world's best brands — backed by warranty, expert support, and unbeatable prices.
+            <p className="mt-6 max-w-md text-lg text-muted-foreground">
+              Flagship smartphones at unbeatable prices. Easy No-Cost EMI, instant exchange, and genuine warranty on every purchase.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
-                <a href="#products">Browse Phones</a>
+              <Button asChild size="lg" className="font-semibold text-primary-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-brand)" }}>
+                <a href="#products">Explore Phones</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
-                <a href="#contact">Get in Touch</a>
+              <Button asChild size="lg" variant="outline" className="border-border bg-card/50 backdrop-blur hover:bg-card">
+                <a href="#visit">Visit Store</a>
               </Button>
+            </div>
+            <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> 100% Genuine</div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Same-Day Delivery</div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Easy Exchange</div>
             </div>
           </div>
           <div className="hidden md:block" />
@@ -103,11 +124,16 @@ function Index() {
       </section>
 
       {/* Features strip */}
-      <section className="border-b border-border bg-secondary">
-        <div className="mx-auto grid max-w-7xl gap-6 px-6 py-10 sm:grid-cols-3">
-          {features.map((f) => (
+      <section className="border-y border-border bg-card/30">
+        <div className="mx-auto grid max-w-7xl gap-6 px-6 py-10 sm:grid-cols-2 md:grid-cols-4">
+          {[
+            { icon: Shield, title: "Genuine Products", desc: "Brand warranty" },
+            { icon: Truck, title: "Free Delivery", desc: "All over India" },
+            { icon: CreditCard, title: "No-Cost EMI", desc: "Up to 12 months" },
+            { icon: Award, title: "Best Price", desc: "Lowest guaranteed" },
+          ].map((f) => (
             <div key={f.title} className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
                 <f.icon className="h-6 w-6" />
               </div>
               <div>
@@ -121,61 +147,72 @@ function Index() {
 
       {/* Products */}
       <section id="products" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="mb-12 flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">Featured Phones</h2>
-            <p className="mt-3 text-muted-foreground">Hand-picked devices, in stock and ready to ship.</p>
-          </div>
+        <div className="mb-12 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Featured Collection</span>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Premium Smartphones</h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Latest flagships from Apple, Samsung, OnePlus & more — in stock and ready to ship.</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((p) => (
-            <article key={p.id} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)] transition-transform hover:-translate-y-1">
-              <div className="relative aspect-square overflow-hidden bg-secondary">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  loading="lazy"
-                  width={768}
-                  height={768}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+            <article key={p.id} className="group overflow-hidden rounded-2xl border border-border transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-card)" }}>
+              <div className="relative aspect-square overflow-hidden bg-white">
+                <img src={p.img} alt={p.name} loading="lazy" width={768} height={768} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <span className="absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-bold text-primary-foreground" style={{ background: "var(--gradient-brand)" }}>
                   {p.tag}
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="font-semibold">{p.name}</h3>
-                <div className="mt-2 flex items-center justify-between">
-                  <span className="text-lg font-bold text-primary">{p.price}</span>
-                  <Button size="sm" variant="secondary" asChild>
-                    <a href={`https://wa.me/1234567890?text=${encodeURIComponent("I want " + p.name)}`} target="_blank" rel="noopener noreferrer">
-                      Buy
-                    </a>
-                  </Button>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">{p.brand}</p>
+                <h3 className="mt-1 font-semibold">{p.name}</h3>
+                <div className="mt-2 flex items-center gap-1 text-xs">
+                  <Star className="h-3.5 w-3.5 fill-primary text-primary" />
+                  <span className="font-medium">{p.rating}</span>
+                  <span className="text-muted-foreground">(2k+ reviews)</span>
                 </div>
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="flex items-center text-xl font-bold text-primary"><IndianRupee className="h-4 w-4" />{p.price}</span>
+                  <span className="text-sm text-muted-foreground line-through">₹{p.mrp}</span>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">EMI from ₹{p.emi}/mo</p>
+                <Button asChild className="mt-4 w-full font-semibold text-primary-foreground" style={{ background: "var(--gradient-brand)" }}>
+                  <a href={`https://wa.me/919876543210?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`} target="_blank" rel="noopener noreferrer">
+                    Buy on WhatsApp
+                  </a>
+                </Button>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="bg-secondary">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-2 md:items-center">
-          <div className="relative aspect-square overflow-hidden rounded-3xl" style={{ background: "var(--gradient-hero)" }}>
-            <img src={heroPhone} alt="Premium smartphone" loading="lazy" width={1536} height={1024} className="h-full w-full object-cover opacity-90" />
-          </div>
-          <div>
-            <span className="text-sm font-semibold uppercase tracking-wider text-primary">About PixelPhone</span>
-            <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">A decade of trusted mobile retail.</h2>
-            <p className="mt-6 text-muted-foreground">
-              Since 2014 we've helped thousands of customers find their perfect smartphone. We source directly from manufacturers, verify every device, and stand behind each sale with a generous warranty.
-            </p>
-            <div className="mt-8 grid grid-cols-3 gap-6">
-              {[["10K+", "Customers"], ["50+", "Brands"], ["4.9★", "Rating"]].map(([n, l]) => (
-                <div key={l}>
-                  <p className="text-3xl font-bold text-primary">{n}</p>
-                  <p className="text-sm text-muted-foreground">{l}</p>
+      {/* Offers banner big */}
+      <section id="offers" className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="relative overflow-hidden rounded-3xl border border-primary/20 p-10 md:p-16" style={{ background: "var(--gradient-hero)" }}>
+          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full opacity-30 blur-3xl" style={{ background: "var(--gradient-gold)" }} />
+          <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                <Zap className="h-3 w-3" /> Limited Time
+              </span>
+              <h2 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">
+                Festive Mega Sale <br />
+                <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>Up to ₹15,000 OFF</span>
+              </h2>
+              <p className="mt-4 text-muted-foreground">Plus instant bank cashback, exchange bonus up to ₹10,000, and free accessories worth ₹2,499.</p>
+              <Button asChild size="lg" className="mt-6 font-semibold text-primary-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-brand)" }}>
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">Claim Offer Now</a>
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "Cashback", value: "₹5,000" },
+                { label: "Exchange", value: "₹10,000" },
+                { label: "EMI", value: "0%" },
+                { label: "Warranty", value: "2 Years" },
+              ].map((s) => (
+                <div key={s.label} className="rounded-2xl border border-border bg-card/50 p-5 backdrop-blur">
+                  <p className="bg-clip-text text-3xl font-bold text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>{s.value}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -183,36 +220,141 @@ function Index() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-bold tracking-tight md:text-5xl">Get in touch</h2>
-          <p className="mt-3 text-muted-foreground">Questions? We respond fast — usually within minutes on WhatsApp.</p>
+      {/* EMI section */}
+      <section className="bg-card/30 py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2 md:items-center">
+          <div>
+            <span className="text-sm font-semibold uppercase tracking-wider text-primary">Easy EMI Options</span>
+            <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Pay in easy monthly instalments.</h2>
+            <p className="mt-4 text-muted-foreground">
+              Own your dream phone today with our No-Cost EMI plans. Available on all leading credit cards and consumer finance partners.
+            </p>
+            <div className="mt-6 space-y-3">
+              {[
+                "No-Cost EMI on 3, 6, 9 & 12 months",
+                "Instant approval — no paperwork",
+                "Available on Debit Cards via Bajaj Finserv",
+                "Cardless EMI for Aadhaar holders",
+              ].map((t) => (
+                <div key={t} className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+                  <span className="text-sm">{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-3xl border border-border p-8" style={{ background: "var(--gradient-card)" }}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Partner Banks</p>
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {emiBanks.map((b) => (
+                <div key={b} className="flex items-center justify-center rounded-xl border border-border bg-background/50 px-4 py-4 text-sm font-semibold">
+                  {b}
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 rounded-2xl border border-primary/30 bg-primary/10 p-5">
+              <p className="text-sm font-semibold text-primary">Example: iPhone 15 Pro</p>
+              <p className="mt-1 text-sm text-muted-foreground">₹1,34,900 → Just <span className="font-bold text-foreground">₹6,329/month</span> for 12 months</p>
+            </div>
+          </div>
         </div>
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
-          {[
-            { icon: Phone, label: "Call us", value: "+1 (234) 567-890" },
-            { icon: Mail, label: "Email", value: "hello@pixelphone.shop" },
-            { icon: MapPin, label: "Visit", value: "123 Market St, NY" },
-          ].map((c) => (
-            <div key={c.label} className="rounded-2xl border border-border bg-card p-6 text-center shadow-[var(--shadow-card)]">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <c.icon className="h-6 w-6" />
+      </section>
+
+      {/* Reviews */}
+      <section id="reviews" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-12 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Customer Stories</span>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Loved by thousands.</h2>
+          <div className="mt-4 flex items-center justify-center gap-2">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-primary text-primary" />)}
+            </div>
+            <span className="font-semibold">4.9</span>
+            <span className="text-muted-foreground">based on 3,400+ Google reviews</span>
+          </div>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {reviews.map((r) => (
+            <div key={r.name} className="rounded-2xl border border-border p-6 transition-colors hover:border-primary/40" style={{ background: "var(--gradient-card)" }}>
+              <div className="flex">
+                {[...Array(r.rating)].map((_, i) => <Star key={i} className="h-4 w-4 fill-primary text-primary" />)}
               </div>
-              <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">{c.label}</p>
-              <p className="mt-1 font-medium">{c.value}</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">"{r.text}"</p>
+              <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full font-bold text-primary-foreground" style={{ background: "var(--gradient-brand)" }}>
+                  {r.name[0]}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">{r.name}</p>
+                  <p className="text-xs text-muted-foreground">{r.city}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      <footer className="border-t border-border bg-secondary">
+      {/* Visit / Map */}
+      <section id="visit" className="bg-card/30 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <span className="text-sm font-semibold uppercase tracking-wider text-primary">Visit Our Store</span>
+            <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Find us on the map.</h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-5">
+            <div className="space-y-4 md:col-span-2">
+              {[
+                { icon: MapPin, title: "Address", value: "Shop No. 12, MG Road, Connaught Place, New Delhi — 110001" },
+                { icon: Phone, title: "Phone", value: "+91 98765 43210" },
+                { icon: Mail, title: "Email", value: "hello@sharmamobile.in" },
+                { icon: Sparkles, title: "Hours", value: "Mon–Sun: 10:00 AM – 9:00 PM" },
+              ].map((c) => (
+                <div key={c.title} className="flex items-start gap-4 rounded-2xl border border-border p-5" style={{ background: "var(--gradient-card)" }}>
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
+                    <c.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{c.title}</p>
+                    <p className="mt-1 text-sm font-medium">{c.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="overflow-hidden rounded-3xl border border-border md:col-span-3">
+              <iframe
+                title="Store location on Google Maps"
+                src="https://www.google.com/maps?q=Connaught+Place,+New+Delhi&output=embed"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                className="h-full min-h-[400px] w-full"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section id="contact" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="overflow-hidden rounded-3xl border border-primary/20 p-12 text-center" style={{ background: "var(--gradient-hero)" }}>
+          <h2 className="text-4xl font-bold tracking-tight md:text-5xl">Talk to us on WhatsApp.</h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Get instant quotes, check stock, and book your phone with home delivery — all on WhatsApp.</p>
+          <Button asChild size="lg" className="mt-8 font-semibold text-whatsapp-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--whatsapp)" }}>
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">Chat Now: +91 98765 43210</a>
+          </Button>
+        </div>
+      </section>
+
+      <footer className="border-t border-border bg-card/30">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
           <div className="flex items-center gap-2 font-semibold">
-            <Smartphone className="h-5 w-5 text-primary" />
-            PixelPhone
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: "var(--gradient-brand)" }}>
+              <Smartphone className="h-4 w-4 text-primary-foreground" />
+            </div>
+            Sharma Mobile Store
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 PixelPhone. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2026 Sharma Mobile Store. All rights reserved.</p>
         </div>
       </footer>
 
