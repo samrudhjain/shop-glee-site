@@ -142,7 +142,7 @@ function Index() {
             <ul className="flex flex-col px-6 py-4">
               {["Featured", "Products", "Offers", "About", "Why Us", "Reviews", "Visit"].map((l) => (
                 <li key={l}>
-                  <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
+                  <a href={`#${l.toLowerCase().replace(/\s+/g, "")}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
                   </a>
                 </li>
