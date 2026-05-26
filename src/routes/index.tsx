@@ -139,7 +139,7 @@ function Index() {
         {menuOpen && (
           <div className="border-t border-border/60 md:hidden">
             <ul className="flex flex-col px-6 py-4">
-              {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-2 text-sm font-medium">
                     {l}
@@ -168,7 +168,7 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="font-semibold text-primary-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-brand)" }}>
-                <a href="#products">Explore Phones</a>
+                <a href="#featured">Explore Phones</a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-border bg-card/50 backdrop-blur hover:bg-card">
                 <a href="#visit">Visit Store</a>
@@ -559,7 +559,7 @@ function Index() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Explore</p>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {["Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
+              {["Featured", "Products", "Offers", "About", "Reviews", "Visit"].map((l) => (
                 <li key={l}><a href={`#${l.toLowerCase()}`} className="hover:text-primary">{l}</a></li>
               ))}
             </ul>
