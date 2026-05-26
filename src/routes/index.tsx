@@ -364,7 +364,7 @@ function Index() {
             <div className="overflow-hidden rounded-3xl border border-border md:col-span-3">
               <iframe
                 title="Store location on Google Maps"
-                src="https://www.google.com/maps?q=Connaught+Place,+New+Delhi&output=embed"
+                src="https://www.google.com/maps?q=Whitefield,+Bengaluru,+Karnataka&output=embed"
                 width="100%"
                 height="100%"
                 loading="lazy"
