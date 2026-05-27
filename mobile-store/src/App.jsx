@@ -97,16 +97,15 @@ useEffect(() => {
   return () => {
     window.removeEventListener("mousemove", moveCursor);
   };
+}, []);
 
-  useEffect(() => {
+useEffect(() => {
   const timer = setTimeout(() => {
     setLoading(false);
-  }, 2500);
+  }, 1200);
 
   return () => clearTimeout(timer);
 }, []);
-}, []);
-
   return (
   <>
   {loading ? (
