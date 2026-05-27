@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050816;
+  --foreground: #ffffff;
+  --primary: #ff8c00;
+  --primary-foreground: #ffffff;
+  --border: rgba(255,255,255,0.1);
+  --card: rgba(255,255,255,0.03);
+  --muted-foreground: #a1a1aa;
+
+  --gradient-brand: linear-gradient(135deg, #ff8c00, #ffb347);
+  --gradient-gold: linear-gradient(135deg, #ffcc70, #ff8c00);
+  --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  --gradient-hero: radial-gradient(circle at top, #1a1a2e, #050816);
+
+  --shadow-glow: 0 0 30px rgba(255,140,0,0.35);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  cursor: none;
+}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid orange;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+}
