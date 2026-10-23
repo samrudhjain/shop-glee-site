@@ -1,20 +1,24 @@
 import hero from "./assets/iphone17.png";
+import s24Ultra from "./assets/s24-ultra.jpg";
+import vivoV50 from "./assets/vivo-v50.jpg";
+import phone3 from "./assets/phone-3.jpg";
+import phone4 from "./assets/phone-4.jpg";
 import { useState, useEffect } from "react";
 import {
   Smartphone, Shield, Truck, Sparkles, Menu, X, Phone, Mail, MapPin,
   Star, CreditCard, Zap, Award, IndianRupee, Tag, CheckCircle2,
   Cpu, HardDrive, Monitor, Camera, Battery, ArrowRight,
-  BadgeCheck, HeadphonesIcon, Wallet,
+  BadgeCheck, HeadphonesIcon, Wallet, MessageCircle,
 } from "lucide-react";
 
 const products = [
   { id: 1, name: "iPhone 17 Pro", brand: "Apple", price: "1,34,900", mrp: "1,45,900", emi: "6,329", tag: "Bestseller", img: hero, rating: 4.9 },
 
-  { id: 2, name: "Galaxy S24 Ultra", brand: "Samsung", price: "1,29,999", mrp: "1,39,999", emi: "6,099", tag: "New Launch", img: "https://via.placeholder.com/400", rating: 4.8 },
+  { id: 2, name: "Galaxy S24 Ultra", brand: "Samsung", price: "1,29,999", mrp: "1,39,999", emi: "6,099", tag: "New Launch", img: s24Ultra, rating: 4.8 },
 
-  { id: 3, name: "OnePlus 12", brand: "OnePlus", price: "64,999", mrp: "69,999", emi: "3,049", tag: "Hot Deal", img: "https://via.placeholder.com/400", rating: 4.7 },
+  { id: 3, name: "OnePlus 12", brand: "OnePlus", price: "64,999", mrp: "69,999", emi: "3,049", tag: "Hot Deal", img: phone3, rating: 4.7 },
 
-  { id: 4, name: "Galaxy Z Fold 5", brand: "Samsung", price: "1,54,999", mrp: "1,64,999", emi: "7,270", tag: "Premium", img: "https://via.placeholder.com/400", rating: 4.8 },
+  { id: 4, name: "Galaxy Z Fold 5", brand: "Samsung", price: "1,54,999", mrp: "1,64,999", emi: "7,270", tag: "Premium", img: phone4, rating: 4.8 },
 ];
 
 const featuredProducts = [
@@ -29,9 +33,9 @@ const featuredProducts = [
     img:  hero,
     rating: 4.9,
     specs: [
-      { icon: Cpu, label: "A17 Pro Chip" },
+      { icon: Cpu, label: "A19 Pro Chip" },
       { icon: HardDrive, label: "256 GB" },
-      { icon: Monitor, label: '6.1" XDR' },
+      { icon: Monitor, label: '6.3" XDR' },
       { icon: Camera, label: "48 MP" },
       { icon: Battery, label: "All Day" },
     ],
@@ -44,7 +48,7 @@ const featuredProducts = [
     mrp: "1,39,999",
     emi: "6,099",
     tag: "Best Camera",
-    img: "https://via.placeholder.com/400",
+    img: s24Ultra,
     rating: 4.8,
     specs: [
       { icon: Cpu, label: "Snapdragon 8 Gen 3" },
@@ -62,7 +66,7 @@ const featuredProducts = [
     mrp: "48,999",
     emi: "2,015",
     tag: "Value King",
-    img: "https://via.placeholder.com/400",
+    img: vivoV50,
     rating: 4.7,
     specs: [
       { icon: Cpu, label: "Dimensity 9300" },
@@ -84,25 +88,12 @@ const emiBanks = ["HDFC", "SBI", "ICICI", "Axis", "Kotak", "Bajaj Finserv"];
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [loading, setLoading] = useState(true);
-
-useEffect(() => {
-  const moveCursor = (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
-
-  window.addEventListener("mousemove", moveCursor);
-
-  return () => {
-    window.removeEventListener("mousemove", moveCursor);
-  };
-}, []);
 
 useEffect(() => {
   const timer = setTimeout(() => {
     setLoading(false);
-  }, 1200);
+  }, 700);
 
   return () => clearTimeout(timer);
 }, []);
@@ -117,13 +108,6 @@ useEffect(() => {
   </div>
 ) : (
   <>
-    <div
-      className="custom-cursor"
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Offers banner */}
       <div className="relative overflow-hidden text-center text-sm font-medium" style={{ background: "var(--gradient-brand)", color: "var(--primary-foreground)" }}>
@@ -151,9 +135,7 @@ useEffect(() => {
               </li>
             ))}
           </ul>
-          <button className="hidden font-semibold text-primary-foreground md:inline-flex" style={{ background: "var(--gradient-brand)" }}>
-            <a href="#products">Shop Now</a>
-          </button>
+          <a href="#products" className="btn-brand btn-sm hidden md:inline-flex">Shop Now</a>
           <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X /> : <Menu />}
           </button>
@@ -177,7 +159,6 @@ useEffect(() => {
       <section id="home" data-aos="fade-up" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
         <div className="absolute inset-0 overflow-hidden"><div className="absolute left-10 top-20 h-72 w-72 animate-pulse rounded-full bg-orange-500/10 blur-3xl"></div><div className="absolute right-10 top-40 h-96 w-96 animate-pulse rounded-full bg-yellow-500/10 blur-3xl"></div><div className="absolute bottom-10 left-1/3 h-80 w-80 animate-pulse rounded-full bg-orange-400/10 blur-3xl"></div></div>
         <div className="absolute inset-0 opacity-40 float-animation backdrop-blur-sm" style={{ backgroundImage: `url(${hero})`, backgroundSize: "cover", backgroundPosition: "center", maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)" }} />
-        <div className="absolute inset-0 opacity-40 float-animation backdrop-blur-sm" style={{ backgroundImage: `url(${hero})`, backgroundSize: "cover", backgroundPosition: "center", maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)" }} />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-32 md:py-44 md:grid-cols-2">
           <div className="absolute left-0 top-20 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl"></div>
           <div className="flex flex-col justify-center">
@@ -186,18 +167,14 @@ useEffect(() => {
             </span>
             <h1 className="text-6xl md:text-8xl font-bold leading-[1.05] tracking-tight">
               India's most loved <br />
-              <span className="bg-clip-text text-transparent animate-pulse" style={{ backgroundImage: "var(--gradient-gold)" }}></span>
+              <span className="bg-clip-text text-transparent animate-pulse" style={{ backgroundImage: "var(--gradient-gold)" }}>mobile store.</span>
             </h1>
             <p className="mt-6 max-w-md text-lg text-muted-foreground">
               Flagship smartphones at unbeatable prices. Easy No-Cost EMI, instant exchange, and genuine warranty on every purchase.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <button className="relative overflow-hidden font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 hover:brightness-110 before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]" style={{ background: "var(--gradient-brand)" }}>
-                <a href="#featured">Explore Phones</a>
-              </button>
-              <button className="border-border bg-card/50 backdrop-blur hover:bg-card">
-                <a href="#visit">Visit Store</a>
-              </button>
+              <a href="#featured" className="btn-brand">Explore Phones</a>
+              <a href="#visit" className="btn-ghost">Visit Store</a>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> 100% Genuine</div>
@@ -302,22 +279,83 @@ useEffect(() => {
                 <p className="mt-1 text-xs text-muted-foreground">EMI from ₹{p.emi}/month</p>
 
                 {/* CTA */}
-                <button
-                  className="mt-5 w-full font-semibold text-primary-foreground transition-all duration-300 hover:scale-[1.05] hover:brightness-110 active:scale-[0.98]"
-                  style={{ background: "var(--gradient-brand)" }}
+                <a
+                  href={`https://wa.me/919876543210?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-brand mt-5 w-full"
                 >
+                  Buy on WhatsApp <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      {/* All Products */}
+      <section id="products" data-aos="fade-up" className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="mb-12 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Shop Now</span>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
+            All <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>Products</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Every phone in store — genuine, sealed, and covered by full brand warranty.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {products.map((p) => {
+            const off = Math.round((1 - parseInt(p.price.replace(/,/g, ""), 10) / parseInt(p.mrp.replace(/,/g, ""), 10)) * 100);
+            return (
+              <article
+                key={p.id}
+                data-aos="zoom-in"
+                className="group relative overflow-hidden rounded-3xl border border-border bg-card/40 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(255,140,0,0.35)]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover transition-all duration-1000 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <span className="absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-primary-foreground shadow-lg" style={{ background: "var(--gradient-brand)" }}>
+                    {p.tag}
+                  </span>
+                  <span className="absolute right-4 top-4 rounded-full bg-black/60 px-2.5 py-1 text-xs font-bold text-green-400 backdrop-blur">
+                    {off}% OFF
+                  </span>
+                  <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-white/90">
+                    <Star className="h-4 w-4 fill-primary text-primary" />
+                    <span className="text-sm font-semibold">{p.rating}</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{p.brand}</p>
+                  <h3 className="mt-1 text-lg font-bold">{p.name}</h3>
+                  <div className="mt-3 flex items-end gap-2">
+                    <span className="flex items-center text-xl font-bold text-primary">
+                      <IndianRupee className="h-4 w-4" />
+                      {p.price}
+                    </span>
+                    <span className="mb-0.5 text-sm text-muted-foreground line-through">₹{p.mrp}</span>
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground">EMI from ₹{p.emi}/month</p>
                   <a
                     href={`https://wa.me/919876543210?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
+                    className="btn-brand btn-sm mt-4 w-full"
                   >
                     Buy on WhatsApp <ArrowRight className="h-4 w-4" />
                   </a>
-                </button>
-              </div>
-            </article>
-          ))}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
       {/* Offers banner big */}
@@ -334,9 +372,7 @@ useEffect(() => {
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-gold)" }}>Up to ₹15,000 OFF</span>
               </h2>
               <p className="mt-4 text-muted-foreground">Plus instant bank cashback, exchange bonus up to ₹10,000, and free accessories worth ₹2,499.</p>
-              <button className="mt-6 font-semibold text-primary-foreground shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-brand)" }}>
-                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">Claim Offer Now</a>
-              </button>
+              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="btn-brand mt-6">Claim Offer Now</a>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -388,7 +424,7 @@ useEffect(() => {
               ))}
             </div>
             <div className="mt-6 rounded-2xl border border-primary/30 bg-primary/10 p-5">
-              <p className="text-sm font-semibold text-primary">Example: iPhone 15 Pro</p>
+              <p className="text-sm font-semibold text-primary">Example: iPhone 17 Pro</p>
               <p className="mt-1 text-sm text-muted-foreground">₹1,34,900 → Just <span className="font-bold text-foreground">₹6,329/month</span> for 12 months</p>
             </div>
           </div>
@@ -425,12 +461,8 @@ useEffect(() => {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <button className="relative overflow-hidden font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 hover:brightness-110 before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]" style={{ background: "var(--gradient-brand)" }}>
-                <a href="tel:+919876543210"><Phone className="mr-2 h-4 w-4" />Call Now</a>
-              </button>
-              <button className="border-border bg-card/50 hover:bg-card">
-                <a href="#visit">Get Directions</a>
-              </button>
+              <a href="tel:+919876543210" className="btn-brand"><Phone className="h-4 w-4" />Call Now</a>
+              <a href="#visit" className="btn-ghost">Get Directions</a>
             </div>
           </div>
         </div>
@@ -567,6 +599,9 @@ useEffect(() => {
         <div className="overflow-hidden rounded-3xl border border-primary/20 p-12 text-center" style={{ background: "var(--gradient-hero)" }}>
           <h2 className="text-4xl font-bold tracking-tight md:text-5xl">Talk to us on WhatsApp.</h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Get instant quotes, check stock, and book your phone with home delivery — all on WhatsApp.</p>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="btn-whatsapp mt-8">
+            <MessageCircle className="h-5 w-5" /> Chat Now: +91 98765 43210
+          </a>
         </div>
       </section>
 
@@ -610,6 +645,7 @@ useEffect(() => {
               <li>Mon – Sat: 10:00 AM – 9:00 PM</li>
               <li>Sunday: 11:00 AM – 8:00 PM</li>
             </ul>
+            <a href="tel:+919876543210" className="btn-brand btn-sm mt-5 w-full"><Phone className="h-4 w-4" />Call Now</a>
           </div>
         </div>
         <div className="border-t border-border">
@@ -619,6 +655,18 @@ useEffect(() => {
           </div>
         </div>
       </footer>
+
+      {/* Floating WhatsApp */}
+      <a
+        href={`https://wa.me/919876543210?text=${encodeURIComponent("Hi, I have a question about a phone")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-[0_8px_30px_rgba(37,211,102,0.45)] transition-transform duration-300 hover:scale-110"
+        style={{ background: "#25d366" }}
+      >
+        <MessageCircle className="h-7 w-7" />
+      </a>
     </div>
       </>
 )}
